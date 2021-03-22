@@ -1,13 +1,24 @@
 import { Component } from "react";
 import Book from "./Book";
+import bookService from "../services/bookService";
 
 class BookList extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //   }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cars: [],
+    };
+  }
 
   bookClicked(title) {
     console.log(`The book ${title} is clicked!`);
+  }
+
+  componentDidMount() {
+    bookService.getBooks().then((cars) => {
+      this.setState(() => ({ cars }));
+    });
   }
 
   render() {
@@ -17,6 +28,7 @@ class BookList extends Component {
         {this.props.books.map((x) => {
           return (
             <Book
+              key={x.id}
               title={x.title}
               description={x.description}
               //   clickHandler={this.bookClicked.bind(this, x.title)}
