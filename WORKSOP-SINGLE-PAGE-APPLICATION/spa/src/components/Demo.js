@@ -7,6 +7,7 @@ class Demo extends Component {
       username: "",
       age: 18,
     };
+    const qn = "asda";
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
   }
